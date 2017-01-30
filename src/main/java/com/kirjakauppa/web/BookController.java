@@ -17,6 +17,11 @@ public class BookController {
 	@Autowired
 	private BookRepository repository; 
 	
+    @RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }	
+	
     @RequestMapping(value="/booklist")
     public String bookList(Model model) {	
         model.addAttribute("books", repository.findAll());
@@ -35,6 +40,6 @@ public class BookController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
     	repository.delete(bookId);
-        return "redirect:booklist";
+        return "redirect:../booklist";
     }    
 }
